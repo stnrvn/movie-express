@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <a href="/movies/add">add</a>
+    <table border="1">
+        <thead>
+            <tr>
+                <td>Movie</td>
+                <td>Released Year</td>
+                <td>Genre</td>
+                <td>Production House</td>
+                <td>Action</td>
+            </tr>
+        </thead>
+        <tbody>
+            <% data.forEach(element => { %>
+            <tr>
+                <td><%= element.name%></td>
+                <td><%= element.releasedYear%></td>
+                <td><%= element.genre%></td>
+                <%if(!element.production_id){ %>
+                <td> Unknown </td>
+                <% } else {%>
+                <td> <%= element.ProductionHouse.production_name %> </td>
+                <% } %>
+                <td><a href="/movies/edit/<%= element.id %>">edit</a> || <a href="/movies/delete/<%= element.id %>">delete</a></td>
+            </tr>
+            <% }) %>
+        </tbody>
+    </table>
+</body>
+</html>

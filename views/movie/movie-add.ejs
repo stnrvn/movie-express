@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+<a href="/movies">Back to list movies</a>
+<form action="/movies/add" method="POST">
+    <div>
+        <label for="name">Name</label>
+        <input type="text" name="name" id="name">
+    </div>
+
+    <div>
+        <label for="releasedYear">Released Year</label>
+        <input type="text" name="releasedYear" id="releasedYear">
+    </div>
+
+    <div>
+        <label for="genre">Genre</label>
+        <select name="genre" id="genre" id="genre">
+        <option value=""></option>
+        <option value="animasi">animation</option>
+        <option value="comedy">comedy</option>
+        <option value="drama">drama</option>
+        <option value="horor">horor</option>
+        <option value="religi">religious</option>
+        <option value="thriller">thriller</option>
+        </select>
+    </div>
+
+    <button type="submit">Add</button>
+</form>
+</body>
+</html>
