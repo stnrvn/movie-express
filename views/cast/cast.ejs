@@ -19,12 +19,13 @@
         </thead>
         <tbody>
             <% data.forEach(element => { %>
+            <% let fullName = `${element.cast_firstName} ${element.cast_lastName}`%>
             <tr>
-                <td><%= element.cast_firstName %> <%= element.cast_lastName %></td>
+                <td><%= fullName %></td>
                 <td><%= element.cast_birthYear %></td>
                 <td><%= element.cast_phoneNumber %></td>
                 <td><%= element.cast_gender %></td>
-                <td><a href="/cast/edit/<%= element.id %>">Edit</a> || <a href="/cast/delete/<%= element.id %>">Delete</a> || <a href="/cast/listmovie/<%= element.id %>">See Movies</a></td>
+                <td><a href="/cast/edit/<%= element.id %>">Edit</a> || <a href="/cast/delete/<%= element.id %>" onclick=" confirm('yakin ingin dihapus?')">Delete</a> || <a href="/cast/listmovie/<%= element.id %>">See Movies</a></td>
             </tr>
             <% }) %>
         </tbody>

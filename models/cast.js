@@ -26,6 +26,13 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'Cast',
+    hooks: {
+        beforeCreate(data, options){
+          if(!data.cast_lastName){
+            data.cast_lastName = data.cast_firstName
+          }
+        }
+    }
   });
   return Cast;
 };
