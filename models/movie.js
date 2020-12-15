@@ -14,7 +14,12 @@ module.exports = (sequelize, DataTypes) => {
       Movie.belongsTo(models.ProductionHouse, {
         foreignKey: "production_id",
         sourceKey: "id"
+      },
+      Movie.belongsToMany(models.Cast, {
+        through: "MovieCastConjunctions",
+        foreignKey: "movie_id"
       })
+      )
     }
   };
   Movie.init({

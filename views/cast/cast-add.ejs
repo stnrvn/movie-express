@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+<a href="/cast">Back to list cast</a>
+<form action="/cast/add" method="POST">
+    <div>
+        <label for="cast_firstName">First Name</label>
+        <input type="text" name="cast_firstName" id="cast_firstName">
+    </div>
+
+    <div>
+        <label for="cast_lastName">Last Name</label>
+        <input type="text" name="cast_lastName" id="cast_lastName">
+    </div>
+
+    <div>
+        <label for="cast_birthYear">Birth Year</label>
+        <input type="text" name="cast_birthYear" id="cast_birthYear">
+    </div>
+
+    <div>
+        <label for="cast_phoneNumber">Phone Number</label>
+        <input type="text" name="cast_phoneNumber" id="cast_phoneNumber">
+    </div>
+
+    <div>
+        <p>gender</p>
+        <input type="radio" id="male" name="cast_gender" value="male">
+        <label for="male">Male</label><br>
+        <input type="radio" id="female" name="cast_gender" value="female">
+        <label for="female">Female</label><br>
+    </div>
+
+    <button type="submit">Add</button>
+</form>
+</body>
+</html>

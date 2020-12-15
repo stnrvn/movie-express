@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <table border="1">
+        <thead>
+            <tr>
+                <td>Movie</td>
+                <td>Released Year</td>
+                <!-- <td>Age when Movie Released</td>
+                <td>Role</td> -->
+            </tr>
+        </thead>
+        <tbody>
+            <% data.forEach(element => { %>
+            <tr>
+                <td><%= element.Movie.name %></td>
+                <td><%= element.Movie.releasedYear %></td>
+                <!-- <td><%= element.Movie.name %></td>
+                <td><%= element.Movie.name %></td> -->
+            </tr>
+            <% }) %>
+        </tbody>
+    </table>
+</body>
+</html>

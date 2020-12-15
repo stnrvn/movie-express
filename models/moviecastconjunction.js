@@ -3,7 +3,7 @@ const {
   Model
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  class Cast extends Model {
+  class MovieCastConjunction extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
@@ -11,21 +11,14 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      Cast.belongsToMany(models.Movie, {
-        through: "MovieCastConjunctions",
-        foreignKey: "cast_id"
-      })
     }
   };
-  Cast.init({
-    cast_firstName: DataTypes.STRING,
-    cast_lastName: DataTypes.STRING,
-    cast_phoneNumber: DataTypes.STRING,
-    cast_birthYear: DataTypes.INTEGER,
-    cast_gender: DataTypes.STRING
+  MovieCastConjunction.init({
+    movie_id: DataTypes.INTEGER,
+    cast_id: DataTypes.INTEGER
   }, {
     sequelize,
-    modelName: 'Cast',
+    modelName: 'MovieCastConjunction',
   });
-  return Cast;
+  return MovieCastConjunction;
 };
