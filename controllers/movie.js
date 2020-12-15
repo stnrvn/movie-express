@@ -1,4 +1,4 @@
-const { Movie, ProductionHouse} = require('../models/index')
+const { Movie, ProductionHouse, Cast, MovieCastConjunction} = require('../models/index')
 
 class Movies{
     static dataMovie(req, res){
@@ -36,6 +36,65 @@ class Movies{
          })
     }
 
+    static addMovieCast(req, res){
+        const id = +req.params.id
+        let dataMovie
+        let dataMovieCast
+        let result
+
+        Movie.findByPk(id,{
+            include: [Cast]
+        })
+        .then(data => {
+            dataMovie = data
+            return Cast.findAll()
+        })
+        .then(resultData => {
+            result = resultData
+            return MovieCastConjunction.findAll()
+        })
+        .then(movieCast => {
+            res.render('movie/movie-addCast', { result, dataMovie, movieCast})
+        })
+        .catch(err => {
+            res.send(err)
+        })
+        // Cast.findAll()
+        // .then(data => {
+        //     dataCast = data
+        //     return Movie.findAll({
+        //         where: {
+        //             id
+        //         },
+        //         include: Cast
+        //     })
+        // })
+        // .then(result => {
+        //     res.render('movie/movie-addCast', { result, dataCast})
+        // })
+        // .catch(err => {
+        //     res.send(err)
+        // })
+    }
+
+    static addCastPost(req, res){
+
+        let opt = {
+            movie_id: +req.params.id,
+            cast_id: req.body.cast,
+            role: req.body.role
+        }
+
+        MovieCastConjunction.create(opt)
+        .then(() => {
+            res.redirect('/movies')
+        })
+        .catch(err => {
+            res.send(err)
+        })
+
+    }
+
     static editMovie(req, res){
         const id = +req.params.id
         let dataProductionHouse
@@ -58,7 +117,6 @@ class Movies{
         
 
         let opt = {
-            id: id,
             name: req.body.name,
             releasedYear: +req.body.releasedYear,
             genre: req.body.genre,

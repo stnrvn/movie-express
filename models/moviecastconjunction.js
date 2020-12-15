@@ -15,7 +15,9 @@ module.exports = (sequelize, DataTypes) => {
   };
   MovieCastConjunction.init({
     movie_id: DataTypes.INTEGER,
-    cast_id: DataTypes.INTEGER
+    cast_id: DataTypes.INTEGER,
+    role: DataTypes.STRING
+
   }, {
     sequelize,
     modelName: 'MovieCastConjunction',

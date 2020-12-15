@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <div>
+    <h1><%= dataMovie.name %></h1>
+    </div>
+    
+
+    <div>
+        <h2>Add data</h2>
+    </div>
+    <form action="/movies/addCast/<%= dataMovie.id %>" method="POST">
+    <div>
+    <select name="cast" id="cast" class="form-control">
+            <option value="">---SELECT---</option>
+        <% result.forEach(data => { %>
+            <option value="<%= data.id %>"><%= data.cast_firstName %> <%= data.cast_lastName %></option>
+        <% }) %>
+    </select>
+    </div>
+
+    <div>
+        <label for="role">Role </label><br>
+        <input type="text" name="role" id="role" placeholder="e.g: Pemeran Utama Wanita">
+    </div>
+
+    <button type="submit">Add</button>
+    </form>
+
+    <table border="1">
+        <thead>
+            <tr>
+                <td>Actor</td>
+                <td>Role</td>
+            </tr>
+        </thead>
+        <tbody>
+            <% movieCast.forEach(element => { %>
+                <% dataMovie.Casts.forEach(data => { %>
+            <tr>
+                <td><%= element.movie_id === data.id ? data.cast_firstName : ''%></td>
+                <td><%= element.movie_id === data.id ? element.role : ''%></td>
+            </tr>
+                <% }) %>
+            <% }) %>
+        </tbody>
+    </table>
+
+</body>
+</html>

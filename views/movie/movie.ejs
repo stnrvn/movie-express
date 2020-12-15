@@ -28,7 +28,7 @@
                 <% } else {%>
                 <td> <%= element.ProductionHouse.production_name %> </td>
                 <% } %>
-                <td><a href="/movies/edit/<%= element.id %>">edit</a> || <a href="/movies/delete/<%= element.id %>">delete</a></td>
+                <td><a href="/movies/edit/<%= element.id %>">Edit</a> || <a href="/movies/delete/<%= element.id %>">Delete</a> || <a href="/movies/addCast/<%= element.id %>">Add Cast</a></td>
             </tr>
             <% }) %>
         </tbody>
