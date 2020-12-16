@@ -1,7 +1,7 @@
 'use strict';
 module.exports = {
-  up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('MovieCasts', {
+  up: async (queryInterface, Sequelize) => {
+    await queryInterface.createTable('MovieCasts', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -13,14 +13,18 @@ module.exports = {
         references: {
           model: "Movies",
           key: "id"
-        }
+        },
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE'
       },
       cast_id: {
         type: Sequelize.INTEGER,
         references: {
           model: "Casts",
           key: "id"
-        }
+        },
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE'
       },
       role: {
         type: Sequelize.STRING
@@ -35,7 +39,7 @@ module.exports = {
       }
     });
   },
-  down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('MovieCasts');
+  down: async (queryInterface, Sequelize) => {
+    await queryInterface.dropTable('MovieCasts');
   }
 };
