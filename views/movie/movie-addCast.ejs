@@ -41,10 +41,10 @@
             </tr>
         </thead>
         <tbody>
-            
+
                 <% dataMovie.Casts.forEach(data => { %>
             <tr>
-                <td><%= data.cast_firstName %> <%= data.cast_lastName %></td>
+                <td><%= data.fullName() %></td>
                  <td><%= data.role %></td>
             </tr>
                 <% }) %>

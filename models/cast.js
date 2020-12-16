@@ -9,6 +9,9 @@ module.exports = (sequelize, DataTypes) => {
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
+    fullName(){
+      return `${this.cast_firstName} ${this.cast_lastName}`
+    }
     static associate(models) {
       // define association here
       Cast.belongsToMany(models.Movie, {
@@ -17,6 +20,7 @@ module.exports = (sequelize, DataTypes) => {
       })
     }
   };
+  
   Cast.init({
     cast_firstName: DataTypes.STRING,
     cast_lastName: DataTypes.STRING,
