@@ -16,7 +16,7 @@ module.exports = (sequelize, DataTypes) => {
         sourceKey: "id"
       },
       Movie.belongsToMany(models.Cast, {
-        through: "MovieCastConjunctions",
+        through: "MovieCasts",
         foreignKey: "movie_id"
       })
       )
@@ -24,7 +24,16 @@ module.exports = (sequelize, DataTypes) => {
   };
   Movie.init({
     name: DataTypes.STRING,
-    releasedYear: DataTypes.INTEGER,
+    releasedYear: {
+      type: DataTypes.INTEGER,
+      validate: {
+        lapYear(date){
+          if((date % 4 === 0) && (date % 100 !== 0) || (date % 400 === 0)){
+            throw new Error('data Movie tidak dapat ditambahkan')
+          }
+        }
+      }
+    },
     genre: DataTypes.STRING,
     production_id: DataTypes.INTEGER
   }, {

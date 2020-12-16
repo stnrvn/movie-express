@@ -19,9 +19,9 @@
         </thead>
         <tbody>
             <% data.forEach(element => { %>
-            <% let fullName = `${element.cast_firstName} ${element.cast_lastName}`%>
+            
             <tr>
-                <td><%= fullName %></td>
+                <td><%= fullName(element.cast_firstName, element.cast_lastName) %></td>
                 <td><%= element.cast_birthYear %></td>
                 <td><%= element.cast_phoneNumber %></td>
                 <td><%= element.cast_gender %></td>

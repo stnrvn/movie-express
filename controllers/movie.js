@@ -1,4 +1,4 @@
-const { Movie, ProductionHouse, Cast, MovieCastConjunction} = require('../models/index')
+const { Movie, ProductionHouse, Cast, MovieCast} = require('../models/index')
 
 class Movies{
     static dataMovie(req, res){
@@ -39,26 +39,57 @@ class Movies{
     static addMovieCast(req, res){
         const id = +req.params.id
         let dataMovie
-        let dataMovieCast
-        let result
-
+        let result 
+        let role = []
+        
         Movie.findByPk(id,{
-            include: [Cast]
+            include: Cast
         })
         .then(data => {
             dataMovie = data
+            // console.log(dataMovie.Casts[0].MovieCasts)
             return Cast.findAll()
         })
         .then(resultData => {
             result = resultData
-            return MovieCastConjunction.findAll()
+            return MovieCast.findAll({
+                where: {
+                    'movie_id' : id
+                }
+            })
         })
-        .then(movieCast => {
-            res.render('movie/movie-addCast', { result, dataMovie, movieCast})
+        .then(dataMovieCast => {
+            // console.log(dataMovieCast);
+            dataMovieCast.forEach(el => {
+                role.push(el.role)
+            })
+
+            console.log(role)
+            
+            // for(let j = 0; j < dataMovie.Casts.length; j++){
+            //     for(let i = count; i < dataMovieCast.length; i++){
+            //         if(dataMovie.Casts[j].id === dataMovieCast[i].cast_id){
+            //             dataMovie.Casts[j].role = dataMovieCast[i].role
+            //         }
+            //     }
+            // }
+            
+            // console.log()
+
+            // role.forEach(element => {
+            //     dataMovie.Casts.forEach(el => {
+            //         el.role = element
+            //     })
+            // })
+            console.log(dataMovie.Casts[0])
+            res.render('movie/movie-addCast', { result, dataMovie, dataMovieCast})
         })
+
         .catch(err => {
+            // console.log(err)
             res.send(err)
         })
+
         // Cast.findAll()
         // .then(data => {
         //     dataCast = data
@@ -81,11 +112,11 @@ class Movies{
 
         let opt = {
             movie_id: +req.params.id,
-            cast_id: req.body.cast,
+            cast_id: +req.body.cast,
             role: req.body.role
         }
 
-        MovieCastConjunction.create(opt)
+        MovieCast.create(opt)
         .then(() => {
             res.redirect('/movies')
         })

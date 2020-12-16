@@ -41,14 +41,14 @@
             </tr>
         </thead>
         <tbody>
-            <% movieCast.forEach(element => { %>
+            
                 <% dataMovie.Casts.forEach(data => { %>
             <tr>
-                <td><%= element.movie_id === data.id ? data.cast_firstName : ''%></td>
-                <td><%= element.movie_id === data.id ? element.role : ''%></td>
+                <td><%= data.cast_firstName %> <%= data.cast_lastName %></td>
+                 <td><%= data.role %></td>
             </tr>
                 <% }) %>
-            <% }) %>
+
         </tbody>
     </table>
 

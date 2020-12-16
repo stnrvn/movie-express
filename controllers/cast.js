@@ -1,4 +1,5 @@
-const { Movie, Cast, MovieCastConjunction } = require('../models/index')
+const { Movie, Cast, MovieCast } = require('../models/index')
+const getAgeMovie = require('../helpers/getAgeMovie')
 
 class Casts {
     static dataCast(req, res){
@@ -18,18 +19,27 @@ class Casts {
     static dataMovieCast(req, res){
         const id = +req.params.id
 
-        Cast.findAll({
-            include: [Movie],
-            where: {
-                id: id
-            }
+        Cast.findByPk(id, {
+            include: [Movie]
         })
         .then(data => {
-            res.render('cast/cast-movie', { data })
+            res.render('cast/cast-movie', { data, getAgeMovie })
         })
         .catch(err => {
             res.render(err)
         })
+        // Cast.findAll({
+        //     include: [Movie],
+        //     where: {
+        //         id: id
+        //     }
+        // })
+        // .then(data => {
+        //     res.render('cast/cast-movie', { data })
+        // })
+        // .catch(err => {
+        //     res.render(err)
+        // })
     }
 
     static addCast(req, res){

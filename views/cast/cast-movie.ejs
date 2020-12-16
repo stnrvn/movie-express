@@ -12,17 +12,16 @@
             <tr>
                 <td>Movie</td>
                 <td>Released Year</td>
-                <!-- <td>Age when Movie Released</td>
-                <td>Role</td> -->
+                <td>Age when Movie Released</td>
+                <!-- <td>Role</td>  -->
             </tr>
         </thead>
         <tbody>
-            <% data.forEach(element => { %>
+            <% data.Movies.forEach(element => { %>
             <tr>
-                <td><%= element.Movie.name %></td>
-                <td><%= element.Movie.releasedYear %></td>
-                <!-- <td><%= element.Movie.name %></td>
-                <td><%= element.Movie.name %></td> -->
+                <td><%= element.name %></td>
+                <td><%= element.releasedYear %></td>
+                <td><%= getAgeMovie(element.releasedYear) %></td>
             </tr>
             <% }) %>
         </tbody>
